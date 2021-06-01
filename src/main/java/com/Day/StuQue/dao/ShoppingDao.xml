@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Day.StuQue.dao.ShoppingDao">
+
+
+
+
+    <insert id="add">
+        insert into tbl_shopping(
+        id,
+        userAddr,
+        userName,
+        commName,
+        commVersion,
+        commSpace,
+        commSize,
+        commColor,
+        commMoney,
+        commTypeName,
+        userId,
+        commId,
+        commTypeId
+
+        )values (
+        #{id},
+        #{userAddr},
+        #{userName},
+        #{commName},
+        #{commVersion},
+        #{commSpace},
+        #{commSize},
+        #{commColor},
+        #{commMoney},
+        #{commTypeName},
+        #{userId},
+        #{commId},
+        #{commTypeId}
+
+        )
+    </insert>
+
+    <select id="getShippingListByUserName" resultType="Shopping">
+        select * from tbl_shopping where userName=#{userName}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(*) from tbl_shopping where userName=#{userName} and commVersion=#{commVersion} and commSpace=#{commSpace} and commColor=#{commColor}
+    </select>
+
+
+
+    <select id="getShoppingListGroupByCommId" resultType="Shopping">
+        select * from tbl_shopping where userName=#{userName} GROUP BY commId
+    </select>
+
+    <select id="getCountGroupBycommId" resultType="int">
+        SELECT COUNT(*) FROM tbl_shopping where userName=#{userName} and commId=#{commId}  GROUP BY commId
+    </select>
+
+    <select id="getShoppingById" resultType="Shopping">
+        select * from tbl_shopping where id=#{id}
+    </select>
+
+    <select id="getSumMoney" resultType="int">
+        select sum(commMoney) from tbl_shopping where userName=#{userName} and commId=#{commId}
+    </select>
+
+    <select id="getShListByCidUname" resultType="Shopping">
+        select * from tbl_shopping where userName=#{userName} and commId=#{commId}
+    </select>
+
+    <delete id="delete" >
+        delete from tbl_shopping where id=#{shoppingId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Day.StuQue.dao.Tran_hisDao">
+
+
+
+    <insert id="add">
+        insert into tbl_tran_his(
+        id,
+        userName,
+        commName,
+        commVersion,
+        commSpace,
+        commSize,
+        commColor,
+        commMoney,
+        createTime,
+        createBy
+
+        )values (
+        #{id},
+        #{userName},
+        #{commName},
+        #{commVersion},
+        #{commSpace},
+        #{commSize},
+        #{commColor},
+        #{commMoney},
+        #{createTime},
+        #{createBy}
+
+        )
+    </insert>
+
+    <select id="getOrderListById" resultType="Tran_his">
+        select * from tbl_tran_his where id=#{id}
+    </select>
+
+    <select id="getHisListAll" resultType="Tran_his">
+        SELECT * from tbl_tran_his where userName=#{userName}
+    </select>
+
+</mapper>

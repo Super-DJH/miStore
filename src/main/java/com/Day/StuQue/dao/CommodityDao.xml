@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.Day.StuQue.dao.CommodityDao">
+
+
+
+    <select id="getCommodityListByTypeId" resultType="Commodity">
+        select * from tbl_commodity where typeId=#{typeId} order by name limit #{omSize},#{pageSize}
+    </select>
+    <select id="getTotal" resultType="int">
+        select count(*) from tbl_commodity
+    </select>
+
+    <select id="getCommodityById" resultType="Commodity">
+        select * from tbl_commodity where id=#{id}
+    </select>
+
+    <update id="update">
+        update tbl_commodity set
+        name=#{name},
+        version=#{version},
+        space=#{space},
+        size=#{size},
+        color=#{color},
+        money=#{money},
+        typeId=#{typeId}
+        where id=#{id}
+
+    </update>
+
+    <select id="search" resultType="Commodity">
+        select * from tbl_commodity
+        <where>
+            <if test="name!=null and name!=''">
+                name like '%' #{name} '%'
+            </if>
+            <if test="version!=null and version!=''">
+                and version like '%' #{version} '%'
+            </if>
+            <if test="space!=null and space!=''">
+                and space like '%' #{space} '%'
+            </if>
+            <if test="size!=null and size!=''">
+                and size like '%' #{size} '%'
+            </if>
+            <if test="color!=null and color!=''">
+                and color like '%' #{color} '%'
+            </if>
+            <if test="money!=null and money!=''">
+                and money like '%' #{money} '%'
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" >
+        insert into tbl_commodity(
+        id,
+        name,
+        version,
+        space,
+        size,
+        color,
+        money,
+        typeId
+
+        )values (
+        #{id},
+        #{name},
+        #{version},
+        #{space},
+        #{size},
+        #{color},
+        #{money},
+        #{typeId}
+
+        )
+    </insert>
+
+    <delete id="delete">
+        delete from tbl_commodity where id=#{id}
+    </delete>
+
+    <select id="getListByTypeId" resultType="Commodity">
+        select * from tbl_commodity where typeId=#{typeId}
+    </select>
+
+
+</mapper>
