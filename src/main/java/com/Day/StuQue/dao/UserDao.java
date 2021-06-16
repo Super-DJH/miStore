@@ -19,5 +19,11 @@ public interface UserDao {
 
     int updateUser(User user);
 
+    //12321
+    //12321
+    
+    //1
+    //2 
+    //
     int getTotal();
 }
